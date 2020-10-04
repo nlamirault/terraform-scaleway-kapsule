@@ -13,6 +13,31 @@ These types of resources are supported:
 ```hcl
 
 module "kubernetes" {
+  source  = "nlamirault/kapsule/scaleway"
+  version = "0.2.0"
+
+  name              = var.name
+  description       = var.description
+  k8s_version       = var.k8s_version
+  cni               = var.cni
+  enable_dashboard  = var.enable_dashboard
+  ingress           = var.ingress
+  tags              = var.tags
+  feature_gates     = var.feature_gates
+  admission_plugins = var.admission_plugins
+
+  enable_cluster_autoscaler     = var.enable_cluster_autoscaler
+  scale_down_delay_after_add    = var.scale_down_delay_after_add
+  scale_down_unneeded_time      = var.scale_down_unneeded_time
+  estimator                     = var.estimator
+  expander                      = var.expander
+  ignore_daemonsets_utilization = var.ignore_daemonsets_utilization
+
+  enable_auto_upgrade           = var.enable_auto_upgrade
+  maintenance_window_start_hour = var.maintenance_window_start_hour
+  maintenance_window_day        = var.maintenance_window_day
+
+  node_pools = var.node_pools
 }
 
 ```
@@ -20,8 +45,56 @@ module "kubernetes" {
 With variables :
 
 ```hcl
+name = "my-kapsule"
+description = "Kubernetes on Kapsule"
 
+k8s_version = "1.18"
 
+cni = "cilium"
+
+ingress = "nginx"
+
+tags = ["terraform", "jarvis"]
+
+feature_gates = []
+
+admission_plugins = []
+
+enable_cluster_autoscaler = true
+disable_scale_down = false
+scale_down_delay_after_add = "5m"
+estimator = "binpacking"
+expander = "random"
+ignore_daemonsets_utilization = true
+balance_similar_node_groups = true
+expendable_pods_priority_cutoff = -5
+
+enable_auto_upgrade           = true
+maintenance_window_start_hour = 4
+maintenance_window_day        = "monday"
+
+node_pools = {
+    "core" = {
+      "node_type"           = "DEV1_M"
+      "size"                = 1
+      "min_size"            = 1
+      "max_size"            = 1
+      "autoscaling"         = true
+      "autohealing"         = true
+      "wait_for_pool_ready" = true
+      "tags"                = ["prod", "core", "terraform"]
+    },
+    "ops" = {
+      "node_type"           = "DEV1_M"
+      "size"                = 1
+      "min_size"            = 1
+      "max_size"            = 1
+      "autoscaling"         = true
+      "autohealing"         = false
+      "wait_for_pool_ready" = true
+      "tags"                = [ "prod", "ops", "terraform" ]
+    }
+}
 ```
 
 This module creates :
