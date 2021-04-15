@@ -13,16 +13,16 @@
 # limitations under the License.
 
 output "id" {
-  value       = scaleway_k8s_cluster_beta.main.id
+  value       = scaleway_k8s_cluster.main.id
   description = "The ID of the cluster."
 }
 
 output "kubeconfig" {
-  value       = scaleway_k8s_cluster_beta.main.kubeconfig
+  value       = scaleway_k8s_cluster.main.kubeconfig
   description = "The Kubernetes configuration."
 }
 
 output "status" {
-  value       = scaleway_k8s_cluster_beta.main.status
+  value       = scaleway_k8s_cluster.main.status
   description = "The status of the Kubernetes cluster."
 }

@@ -12,14 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "scaleway_k8s_cluster_beta" "main" {
+resource "scaleway_k8s_cluster" "main" {
   name              = var.name
   region            = var.region
   description       = format("%s. Created by Terraform", var.description)
   version           = var.k8s_version
   cni               = var.cni
-  enable_dashboard  = var.enable_dashboard
-  ingress           = var.ingress
   tags              = var.tags
   feature_gates     = var.feature_gates
   admission_plugins = var.admission_plugins
@@ -50,4 +48,3 @@ resource "scaleway_k8s_cluster_beta" "main" {
   }
 
 }
-
