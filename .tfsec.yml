@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-terraform {
-  required_providers {
-    scaleway = {
-      source  = "scaleway/scaleway"
-      version = "~> 1.16"
-    }
-  }
-  required_version = ">= 0.13"
-}
+---
+# exclude:
+

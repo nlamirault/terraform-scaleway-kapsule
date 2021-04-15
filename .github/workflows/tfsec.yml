@@ -12,17 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  value       = scaleway_k8s_cluster.main.id
-  description = "The ID of the cluster."
-}
+name: Tfsec
 
-output "kubeconfig" {
-  value       = scaleway_k8s_cluster.main.kubeconfig
-  description = "The Kubernetes configuration."
-}
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-output "status" {
-  value       = scaleway_k8s_cluster.main.status
-  description = "The status of the Kubernetes cluster."
-}
+jobs:
+  tfsec:
+    name: gke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform security scan master
+        uses: triat/terraform-security-scan@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

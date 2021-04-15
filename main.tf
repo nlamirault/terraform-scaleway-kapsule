@@ -12,17 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  value       = scaleway_k8s_cluster.main.id
-  description = "The ID of the cluster."
-}
+terraform {
+  required_version = ">= 0.14"
 
-output "kubeconfig" {
-  value       = scaleway_k8s_cluster.main.kubeconfig
-  description = "The Kubernetes configuration."
-}
-
-output "status" {
-  value       = scaleway_k8s_cluster.main.status
-  description = "The status of the Kubernetes cluster."
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = ">= 2.0"
+    }
+  }
 }

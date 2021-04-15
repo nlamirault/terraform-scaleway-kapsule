@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "scaleway_k8s_pool_beta" "pools" {
+resource "scaleway_k8s_pool" "pools" {
   for_each = var.node_pools
 
-  cluster_id = scaleway_k8s_cluster_beta.main.id
+  cluster_id = scaleway_k8s_cluster.main.id
 
   name                = each.key
   node_type           = each.value.node_type
