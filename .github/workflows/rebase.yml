@@ -1,5 +1,5 @@
-# Copyright (C) 2020 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,26 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Project / Tfsec
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
+name: Projet / Rebase
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  issue_comment:
+    types: [created]
 jobs:
-  tfsec:
-    name: tfsec
+  rebase:
+    name: Rebase
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout the latest code
         uses: actions/checkout@v3
-
-      - name: Terraform security scan module
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
         with:
-          github_token: ${{ github.token }}
-          working_dir: .
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - name: Automatic Rebase
+        uses: cirrus-actions/rebase@1.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

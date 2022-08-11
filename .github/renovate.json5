@@ -15,38 +15,86 @@
   "rebaseWhen": "conflicted",
   "assignees": ["@nlamirault"],
   "reviewersFromCodeOwners": true,
+  // "labels": ["kind/renovate"],
   "packageRules": [
     // Labels for Terraform
     {
-      "datasources": ["terraform", "terraform-provider", "terraform-module"],
+      "datasources": ["terraform", "terraform-version", "terraform-provider", "terraform-module"],
       "updateTypes": ["major"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/high", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/high", "size/xs"]
     },
     {
-      "datasources": ["terraform", "terraform-provider", "terraform-module"],
+      "datasources": ["terraform", "terraform-version", "terraform-provider", "terraform-module"],
       "updateTypes": ["minor"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/medium", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/medium", "size/xs"]
     },
     {
-      "datasources": ["terraform", "terraform-provider", "terraform-module"],
+      "datasources": ["terraform", "terraform-version", "terraform-provider", "terraform-module"],
       "updateTypes": ["patch"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/low", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/low", "size/xs"]
     },
-    // Labels for Terraform-version
     {
-      "matchPackageNames": ["terraform-version"],
+      "matchPackageNames": ["hashicorp/terraform"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/high", "size/xs"]
+    },
+    {
+      "matchPackageNames": ["hashicorp/terraform"],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/medium", "size/xs"]
+    },
+    {
+      "matchPackageNames": ["hashicorp/terraform"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/terraform", "dependency/terraform", "priority/low", "size/xs"]
+    },
+    // Labels for Docker
+    {
+      "datasources": ["docker"],
       "updateTypes": ["major"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/high", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/high", "size/xs"]
     },
     {
-      "matchPackageNames": ["terraform-version"],
+      "datasources": ["docker"],
       "updateTypes": ["minor"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/medium", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/medium", "size/xs"]
     },
     {
-      "matchPackageNames": ["terraform-version"],
+      "datasources": ["docker"],
       "updateTypes": ["patch"],
-      "labels": ["area/renovate", "dependency/terraform", "priority/low", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/low", "size/xs"]
+    },
+    // Labels for Github Actions
+    {
+      "matchManagers": ["github-actions"],
+      "updateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/high", "size/xs"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "updateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/medium", "size/xs"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "updateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/low", "size/xs"]
+    },
+    // Labels for PreCommit
+    {
+      "matchPaths": [".pre-commit-config.yaml"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/high", "size/xs"]
+    },
+    {
+      "matchPaths": [".pre-commit-config.yaml"],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/medium", "size/xs"]
+    },
+    {
+      "matchPaths": [".pre-commit-config.yaml"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/low", "size/xs"]
     },
   ]
 }

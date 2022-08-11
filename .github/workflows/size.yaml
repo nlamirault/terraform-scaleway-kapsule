@@ -1,5 +1,5 @@
-# Copyright (C) 2020 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,26 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Project / Tfsec
+name: Project / Size PR
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    types: [opened, synchronize]
 
 jobs:
-  tfsec:
-    name: tfsec
+  update_labels:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Terraform security scan module
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+      - uses: actions-ecosystem/action-size@v2
+        id: size
+
+      - uses: actions-ecosystem/action-remove-labels@v1
         with:
-          github_token: ${{ github.token }}
-          working_dir: .
+          github_token: ${{ secrets.github_token }}
+          labels: ${{ steps.size.outputs.stale_labels }}
+
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          labels: ${{ steps.size.outputs.new_label }}
