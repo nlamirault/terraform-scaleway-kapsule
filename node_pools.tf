@@ -28,7 +28,7 @@ resource "scaleway_k8s_pool" "pools" {
   placement_group_id  = lookup(each.value, "placement_group_id", null)
   autoscaling         = lookup(each.value, "autoscaling", false)
   autohealing         = lookup(each.value, "autohealing", false)
-  container_runtime   = lookup(each.value, "container_runtime", "docker")
+  container_runtime   = lookup(each.value, "container_runtime", "containerd")
   region              = lookup(each.value, "region", null)
   wait_for_pool_ready = lookup(each.value, "wait_for_pool_ready", false)
 }
