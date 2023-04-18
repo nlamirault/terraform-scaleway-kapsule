@@ -69,6 +69,11 @@ variable "admission_plugins" {
   description = "The list of admission plugins to enable on the cluster."
 }
 
+variable "delete_additional_resources" {
+  type        = bool
+  description = "Delete additional resources that were created in Kubernetes on cluster deletion"
+  default     = false
+}
 
 variable "enable_cluster_autoscaler" {
   default     = false

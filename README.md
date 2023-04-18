@@ -135,6 +135,7 @@ No modules.
 | <a name="input_admission_plugins"></a> [admission\_plugins](#input\_admission\_plugins) | The list of admission plugins to enable on the cluster. | `list(string)` | `[]` | no |
 | <a name="input_balance_similar_node_groups"></a> [balance\_similar\_node\_groups](#input\_balance\_similar\_node\_groups) | (Defaults to false) Detect similar node groups and balance the number of nodes between them. | `bool` | `false` | no |
 | <a name="input_cni"></a> [cni](#input\_cni) | The Container Network Interface (CNI) for the Kubernetes cluster. | `string` | `"cilium"` | no |
+| <a name="input_delete_additional_resources"></a> [delete\_additional\_resources](#input\_delete\_additional\_resources) | Delete additional resources that were created in Kubernetes on cluster deletion | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description of the cluster | `string` | n/a | yes |
 | <a name="input_disable_scale_down"></a> [disable\_scale\_down](#input\_disable\_scale\_down) | (Defaults to false) Disables the scale down feature of the autoscaler. | `bool` | `false` | no |
 | <a name="input_enable_auto_upgrade"></a> [enable\_auto\_upgrade](#input\_enable\_auto\_upgrade) | (Optional) Set to true to enable Kubernetes patch version auto upgrades. ~> Important: When enabling auto upgrades, the version field take a minor version like x.y (ie 1.18). | `bool` | `false` | no |
