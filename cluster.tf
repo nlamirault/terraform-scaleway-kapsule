@@ -15,14 +15,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "scaleway_k8s_cluster" "main" {
-  name              = var.name
-  region            = var.region
-  description       = format("%s. Created by Terraform", var.description)
-  version           = var.k8s_version
-  cni               = var.cni
-  tags              = var.tags
-  feature_gates     = var.feature_gates
-  admission_plugins = var.admission_plugins
+  name                        = var.name
+  region                      = var.region
+  description                 = format("%s. Created by Terraform", var.description)
+  version                     = var.k8s_version
+  cni                         = var.cni
+  tags                        = var.tags
+  feature_gates               = var.feature_gates
+  admission_plugins           = var.admission_plugins
+  delete_additional_resources = var.delete_additional_resources
 
   dynamic "autoscaler_config" {
     for_each = var.enable_cluster_autoscaler ? [1] : []
