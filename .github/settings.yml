@@ -16,9 +16,9 @@
 
 ---
 repository:
-  name: "terraform-scaleway-eso"
-  description: "External Secret Operator resources on Scaleway"
-  topics: external-secret-operator, eso, scaleway, secrets-manager, terraform
+  name: "terraform-scaleway-kapsule"
+  description: "Kapsule resources on Scaleway"
+  topics: kapsule, kubernetes, scaleway, terraform
   private: false
   has_issues: true
   has_projects: true
