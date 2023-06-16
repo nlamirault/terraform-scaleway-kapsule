@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: Renovate / Helm releases
+name: Project / Renovate
 
 on:
   workflow_dispatch:
