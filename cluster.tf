@@ -25,6 +25,8 @@ resource "scaleway_k8s_cluster" "main" {
   admission_plugins           = var.admission_plugins
   delete_additional_resources = var.delete_additional_resources
 
+  private_network_id = data.scaleway_vpc_private_network.this.id
+
   dynamic "autoscaler_config" {
     for_each = var.enable_cluster_autoscaler ? [1] : []
 
